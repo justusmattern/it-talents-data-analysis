@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Datenanalyse</title>
+        <meta charset="utf-8">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/w3schools.css') }}"> <!--- link: https://www.w3schools.com/w3css/4/w3.css -->
+    </head>
+
+    <body>
+        <div class="w3-sidebar w3-bar-block" style="width:20%; background-color: rgb(224, 224, 224);">
+            <h3><b class="w3-bar-item" style="text-decoration: underline;">Kategorien</b></h3>
+            <a href="http://127.0.0.1:5000/" style="height: 10%; vertical-align: middle;" class="w3-bar-item w3-button">Start</a>
+            <a href="http://127.0.0.1:5000/Sieger-und-Verlierer" style="height: 10%;" class="w3-bar-item w3-button">Sieger und Verlierer</a>
+            <a href="http://127.0.0.1:5000/Spieler" style="height: 10%;" class="w3-bar-item w3-button">Spieler</a>
+          </div>
+          
+          <div style="margin-left:20%; text-align: center;">
+          <h1 class="header"><b>Start</b></h1>
+          <div>
+              <span class="textblock">
+                  Vom {{firstDate}} bis zum {{lastDate}} haben {{allPlayers}} Spieler {{numOfRaces}} Rennen auf {{numOfTracks}} Strecken kreiert.<br>Von diesen wurden von {{numOfPlayers}} Spielern {{finishedRaces}} Rennen, also {{percentage}}% gefahren,<br>
+                  wobei um {{totalMoney}}€ gespielt wurde, was einem durchschnittlichen Einsatz von {{averageBet}}€ pro Spiel entspricht.
+              </span><span style="font-size: 0.8em;">
+                  <br><br><br><br><br><br>Über das Menü auf der linken Bildschirmseite gelangen sie zu Seiten, die ihnen genauere<br>Informationen zu einzelnen Spielern und Rennstrecken
+                  sowie die Gewinner und Verlierer in einzelnen Kategorien präsentieren.<br>Einige Daten werden zur Veranschaulichung in Grafiken dargestellt.
+                </span>
+
+          </div>
+
+          
+          </div>
+          
+
+    </body>
+</html>

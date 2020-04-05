@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Datenanalyse</title>
+        <meta charset="utf-8">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/w3schools.css') }}"> <!--- link: https://www.w3schools.com/w3css/4/w3.css -->
+        <script src="https://cdn.bokeh.org/bokeh/release/bokeh-1.4.0.min.js"></script>
+        <script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-1.4.0.min.js"></script>
+        <script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-1.4.0.min.js"></script>
+
+        {{scriptBarChartGames|safe}}
+        {{scriptBarChartWins|safe}}
+        {{scriptBetChart|safe}}
+        {{scriptRacesOnTrack|safe}}
+        {{scriptForecastChart|safe}}
+        {{scriptWeatherChart|safe}}
+        {{scriptRaceByYearChart|safe}}
+
+    </head>
+
+    <body>
+        <div class="w3-sidebar w3-bar-block" style="width:20%; background-color: rgb(224, 224, 224);">
+            <h3><b class="w3-bar-item" style="text-decoration: underline;">Kategorien</b></h3>
+            <a href="http://127.0.0.1:5000/" style="height: 10%; vertical-align: middle;" class="w3-bar-item w3-button">Start</a>
+            <a href="http://127.0.0.1:5000/Sieger-und-Verlierer" style="height: 10%;" class="w3-bar-item w3-button">Sieger und Verlierer</a>
+            <a href="http://127.0.0.1:5000/Spieler" style="height: 10%;" class="w3-bar-item w3-button">Spieler</a>
+          </div>
+          
+          <div style="margin-left:20%; text-align: center;">
+          <h1 class="header"><b>Spieler {{player}}</b></h1>
+          <div style="text-align: left;">
+              <span style="text-align:left;">
+                  <br>
+                <h4><b>Allgemein:</b></h4>
+                         
+                <b>#{{rankGames}}</b> in Kategorie "Anzahl an Spielen" mit {{numOfGames}} Spielen<br>
+                {{divBarChartGames|safe}}<br><br>
+                <b>#{{rankWins}}</b> in Kategorie "Anzahl an Siegen" mit {{numOfWins}} Siegen<br>
+                {{divBarChartWins|safe}}<br><br>
+                <b>#{{rankRatio}}</b> in Kategorie "Sieg/Niederlage-Rate" mit {{ratio}} Siegen pro Niederlage<br>
+                <br><br><br>
+
+
+                {% if numOfGames > 9 %} <!-- if a player had less than ten races, meaningful statements about preferences regarding their opponents can't be made-->
+                <h4><b>Mitspieler/Herausforderungen:</b></h4>
+                Häufigster Gegner: Spieler {{commonOpponent.0}} mit {{gamesWithOpponent.0}} Rennen<br><br>
+                Von Spieler {{player}} am häufigsten herausgefordert: Spieler {{mainlyChallenged.0}} ({{howOftenChallenged.0}} mal)<br><br>
+                Spieler {{player}} wurde am häufigsten herausgefordert von: Spieler {{mainChallenger.0}} ({{howOftenChallengedBy.0}} mal)<br><br>
+                Spieler {{player}} hat {{declineRatio}}% der Herausforderungen abgelehnt<br>
+                <br><br><br> {% endif %}
+
+                <h4><b>Finanzielles:</b></h4>
+
+                <b>#{{rankMoney}}</b> in Kategorie "Geld gewonnen/verloren" mit {{money}} Euro<br><br>
+                <b>#{{rankAvBet}}</b> in Kategorie "Durchschnittlicher Einsatz" mit {{avBet}} Euro pro Spiel<br><br>
+                {{divBetChart|safe}}<br>
+
+                <br><br><br>
+
+                <h4><b>Strecken:</b></h4>
+                
+                Am meisten gefahren: Strecke {{favTrack.0}} mit {{racesOnTrack.0}} Rennen<br><br>
+
+                
+                Am wenigsten gefahren: Strecke {{leastFavTrack.0}} mit {{racesOnLeastFav}} Rennen<br><br>
+                {{divRacesOnTrack|safe}}<br>
+
+
+                <br><br><br>
+
+
+                {% if numOfGames > 9 %}  <!-- if a player had less than ten races, meaningful statements about preferences regarding the weather can't be made-->
+                <h4><b>Wetter:</b></h4>
+
+                Bei diesem vorausgesagten Wetter nimmt Spieler {{player}} am ehesten Herausforderungen an oder setzt Spiele an: {{favWeatherForecast.0}}<br>
+
+                {{divForecastChart|safe}}<br><br>
+
+                Die beste Sieg/Niederlage-Rate hat Spieler {{player}} bei folgendem Wetter: {{bestWeatherPerformance.0}}<br>
+
+                {{divWeatherChart|safe}}
+
+                <br><br><br>
+
+                {% endif %}
+
+
+                <h4><b>Zeitliche Entwicklung:</b></h4>
+                
+                {{divRaceByYearChart|safe}}
+
+
+                
+
+
+
+
+
+
+
+                </span>
+
+          </div>
+
+          
+          </div>
+          
+
+    </body>
+</html>

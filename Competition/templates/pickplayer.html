@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Datenanalyse</title>
+        <meta charset="utf-8">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/w3schools.css') }}"> <!--- link: https://www.w3schools.com/w3css/4/w3.css -->
+    </head>
+
+    <body>
+        <div class="w3-sidebar w3-bar-block" style="width:20%; background-color: rgb(224, 224, 224);">
+            <h3><b class="w3-bar-item" style="text-decoration: underline;">Kategorien</b></h3>
+            <a href="http://127.0.0.1:5000/" style="height: 10%; vertical-align: middle;" class="w3-bar-item w3-button">Start</a>
+            <a href="http://127.0.0.1:5000/Sieger-und-Verlierer" style="height: 10%;" class="w3-bar-item w3-button">Sieger und Verlierer</a>
+            <a href="http://127.0.0.1:5000/Spieler" style="height: 10%;" class="w3-bar-item w3-button">Spieler</a>
+          </div>
+          
+          <div style="margin-left:20%; text-align: center;">
+          <h1 class="header"><b>Spieler</b></h1>
+          <div>
+              <span class="textblock">
+                  Wähle den Spieler aus, dessen Daten du sehen möchtest:
+                </span>
+
+                
+                    <form class="form-inline" method="POST" action="/Spieler/SpielerDaten">
+                        <div class="form-group">
+                          <div class="input-group">
+                              <span class="input-group-addon">Wähle:</span>
+                                  <select name="comp_select" class="selectpicker form-control">
+                                    {% for p in players %}
+                                    <option value="{{ p }}">{{ p }}</option>
+                                    {% endfor %}
+                                  </select>
+                          </div>
+                          <button type="submit" class="btn btn-default">Go</button>
+                        </div>
+                      </form>
+                    <br />
+
+          </div>
+
+          
+          </div>
+          
+
+    </body>
+</html>
